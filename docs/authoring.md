@@ -25,7 +25,8 @@ Instructions for the agent…
 - **The description decides when the agent loads the skill.** Say what it does *and* when to use
   it, with trigger phrases.
 - **Paths are relative to the skill's own folder** (`scripts/build.py`). Never use
-  `.claude/skills/…`, `.cursor/skills/…` or absolute paths, so one copy works in every agent.
+  `.claude/skills/…`, `.cursor/skills/…`, `.github/skills/…` or absolute paths, so one copy works in
+  every agent.
 - **Scripts use only the standard library** where possible. List any other requirements in the
   skill and in the README.
 - **Keep the skill self-contained.** If it uses another skill, look for it beside its own folder

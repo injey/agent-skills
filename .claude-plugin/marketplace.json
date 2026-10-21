@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "Agent skills for Claude Code, Cursor and other SKILL.md-compatible agents, grouped into plugins by theme.",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "plugins": [
     {
       "name": "doc-tools",
       "source": "./plugins/doc-tools",
       "description": "Build shareable documents, slide decks and HTML pages from Markdown and CSV: markdown-docs, story-docs, csv-to-html.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "documentation",
       "keywords": [
         "markdown",
@@ -28,7 +28,7 @@
       "name": "skill-tools",
       "source": "./plugins/skill-tools",
       "description": "Maintain your own agent skills: publish-skill copies a new or updated skill from any project into your skills repo, checks it is public-safe, and releases it.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "development",
       "keywords": [
         "skills",

@@ -5,6 +5,7 @@
 #   ./install.sh                                    # every skill -> ~/.claude/skills
 #   ./install.sh --agent cursor --skill markdown-docs --skill story-docs
 #   ./install.sh --agent cursor --scope project --project ~/code/my-app
+#   ./install.sh --agent copilot --scope project       # -> .github/skills (shared with the team via git)
 #   ./install.sh --plugin doc-tools --link          # symlink, so `git pull` updates the skills
 #
 # Without a clone:
@@ -20,7 +21,9 @@ skills=(); plugins=()
 usage() {
   cat <<'EOF'
 Usage: install.sh [options]
-  --agent claude|cursor|agents   target agent (default: claude). "agents" = the shared .agents/skills folder
+  --agent claude|cursor|copilot|agents
+                                 target agent (default: claude). copilot = ~/.copilot/skills (user) or
+                                 .github/skills (project); agents = the shared .agents/skills folder
   --scope user|project           user = home folder, all projects (default); project = one project
   --project DIR                  project root for --scope project (default: current directory)
   --dest DIR                     install into DIR instead (any other agent)
@@ -70,8 +73,9 @@ if [ -z "$dest" ]; then
   case "$agent" in
     claude) sub=".claude/skills" ;;
     cursor) sub=".cursor/skills" ;;
+    copilot) [ "$scope" = project ] && sub=".github/skills" || sub=".copilot/skills" ;;
     agents) sub=".agents/skills" ;;
-    *) echo "unknown agent: $agent (use claude, cursor, agents, or --dest DIR)" >&2; exit 2 ;;
+    *) echo "unknown agent: $agent (use claude, cursor, copilot, agents, or --dest DIR)" >&2; exit 2 ;;
   esac
   case "$scope" in
     user) dest="$HOME/$sub" ;;

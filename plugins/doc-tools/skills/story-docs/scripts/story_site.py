@@ -247,7 +247,7 @@ def fix_navigation(site: Site) -> list[str]:
 
 def find_md2pdf(root: Path) -> Path:
     engine = Path("markdown-docs") / "scripts" / "md2pdf.py"
-    skill_dirs = tuple(Path(d) / "skills" for d in (".claude", ".cursor", ".agents"))   # Claude Code, Cursor, others
+    skill_dirs = tuple(Path(d) / "skills" for d in (".claude", ".cursor", ".github", ".copilot", ".agents"))   # Claude Code, Cursor, Copilot, others
     for folder in [root, *root.parents]:
         for skills in skill_dirs:
             candidate = folder / skills / engine
@@ -258,7 +258,8 @@ def find_md2pdf(root: Path) -> Path:
         if candidate.exists():
             return candidate
     raise SystemExit("markdown-docs engine (md2pdf.py) not found beside this skill, or in .claude/skills, "
-                     ".cursor/skills or .agents/skills above the stories folder or in your home folder")
+                     ".cursor/skills, .github/skills, .copilot/skills or .agents/skills above the stories folder "
+                     "or in your home folder")
 
 
 def build(root: Path, *, changed: bool, everything: bool) -> int:

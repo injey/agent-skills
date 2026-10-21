@@ -1,6 +1,6 @@
 # agent-skills
 
-Reusable skills for AI coding agents: Claude Code, Cursor, and any agent that reads the
+Reusable skills for AI coding agents: Claude Code, Cursor, GitHub Copilot, and any agent that reads the
 [Agent Skills](https://agentskills.io) `SKILL.md` format. Skills are grouped into **plugins** by theme.
 Each skill is a self-contained folder that works the same in every agent.
 
@@ -26,6 +26,30 @@ Each skill is a self-contained folder that works the same in every agent.
 `/plugin marketplace update injey-agent-skills` pulls new versions. (The marketplace is named
 `injey-agent-skills` because Claude Code reserves `agent-skills` for Anthropic.) Skills then show as
 `doc-tools:markdown-docs` and so on.
+
+### GitHub Copilot
+
+Works in Copilot agent mode in VS Code, the Copilot CLI and the Copilot cloud agent.
+
+**Copilot CLI: plugin marketplace.** The CLI reads this repo's marketplace file directly:
+
+```bash
+copilot plugin marketplace add injey/agent-skills
+copilot plugin install doc-tools@injey-agent-skills
+```
+
+**VS Code and the cloud agent: copy the skill folders.**
+
+```bash
+# for one repository, shared with the team through git (also used by the Copilot cloud agent)
+./install.sh --agent copilot --scope project --project ~/code/app    # -> ~/code/app/.github/skills
+# for you, in every project
+./install.sh --agent copilot                                         # -> ~/.copilot/skills
+```
+
+Copilot also reads `.claude/skills/` and `~/.claude/skills/`. If you've already installed for
+Claude Code, Copilot picks those skills up as well, so don't install them twice. In VS Code, use
+agent mode; Copilot loads a skill when your request matches its description.
 
 ### Any agent: `npx skills`
 
@@ -53,6 +77,7 @@ git clone https://github.com/injey/agent-skills.git && cd agent-skills
 | --- | --- | --- |
 | `claude` | `~/.claude/skills/` | `<project>/.claude/skills/` |
 | `cursor` | `~/.cursor/skills/` (the only folder that syncs to Cursor Cloud Agents) | `<project>/.cursor/skills/` |
+| `copilot` | `~/.copilot/skills/` | `<project>/.github/skills/` (also used by the Copilot cloud agent) |
 | `agents` | `~/.agents/skills/` (shared folder read by several agents) | `<project>/.agents/skills/` |
 
 Start a new agent session after installing. In Cursor, type `/` in Agent chat to see the skills.

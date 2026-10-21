@@ -1,7 +1,7 @@
 {
   "name": "doc-tools",
   "description": "Build shareable documents, slide decks and HTML pages from Markdown and CSV: markdown-docs, story-docs, csv-to-html.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "injey",
     "url": "https://github.com/injey"
@@ -9,5 +9,12 @@
   "homepage": "https://github.com/injey/agent-skills",
   "repository": "https://github.com/injey/agent-skills",
   "license": "MIT",
-  "keywords": ["markdown", "pdf", "slides", "html", "csv", "documentation"]
+  "keywords": [
+    "markdown",
+    "pdf",
+    "slides",
+    "html",
+    "csv",
+    "documentation"
+  ]
 }

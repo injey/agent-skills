@@ -70,8 +70,8 @@ python3 $S build <stories> --changed  # only pages whose .md is newer than the .
 ```
 
 `build` finds the markdown-docs engine (`markdown-docs/scripts/md2pdf.py`) beside this skill, in a
-`.claude/skills`, `.cursor/skills` or `.agents/skills` folder above the stories folder, or in the same
-folders under your home directory, and renders with the project's theme settings. To render one
+`.claude/skills`, `.cursor/skills`, `.github/skills`, `.copilot/skills` or `.agents/skills` folder above
+the stories folder, or in the same folders under your home directory, and renders with the project's theme settings. To render one
 page: `python3 <md2pdf.py> <page>.md --format html`. The engine writes `.html` links into the HTML and
 `.pdf` links only into the PDF.
 

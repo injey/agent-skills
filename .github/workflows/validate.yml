@@ -20,3 +20,5 @@ jobs:
           ./install.sh --list
           ./install.sh --dest "$RUNNER_TEMP/skills"
           test -f "$RUNNER_TEMP/skills/markdown-docs/SKILL.md"
+          ./install.sh --agent copilot --scope project --project "$RUNNER_TEMP" --skill csv-to-html
+          test -f "$RUNNER_TEMP/.github/skills/csv-to-html/SKILL.md"

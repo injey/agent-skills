@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0 (2026-10-21)
+
+- GitHub Copilot support: `install.sh --agent copilot` installs to `~/.copilot/skills` (user) or
+  `.github/skills` (project); README covers the Copilot CLI marketplace and VS Code.
+- `story-docs` 0.1.1: also finds the markdown-docs engine in `.github/skills` and `~/.copilot/skills`.
+- `publish-skill` 0.1.1: also looks for skills in Copilot folders and reports Copilot update commands.
+
 ## 0.2.0 (2026-10-21)
 
 - New `skill-tools` plugin with `publish-skill`: publish a new or updated skill from any project to

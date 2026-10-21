@@ -44,7 +44,8 @@ M=$(python3 -c "import json;print(json.load(open('$R/.claude-plugin/marketplace.
 ## 2. Find the skill to publish
 
 - Use the skill(s) the user names. Look in the current project's `.claude/skills/`,
-  `.cursor/skills/`, `.agents/skills/`, then `~/.claude/skills/` and `~/.cursor/skills/`.
+  `.cursor/skills/`, `.github/skills/`, `.agents/skills/`, then `~/.claude/skills/`,
+  `~/.cursor/skills/` and `~/.copilot/skills/`.
 - If the name matches several copies, or none, ask which folder is meant.
 - **The source may be a symlink into `$R`** (installed with `install.sh --link`). Then the
   edits are already in the repo: skip the copy in step 3 and go on with the checks.
@@ -69,7 +70,8 @@ rsync -a --delete --exclude .DS_Store --exclude __pycache__ --exclude '*.pyc' \
 
 Then check and fix the copy:
 
-- **Paths:** replace `.claude/skills/<name>/…`, `.cursor/skills/<name>/…` and absolute paths
+- **Paths:** replace `.claude/skills/<name>/…`, `.cursor/skills/<name>/…`, `.github/skills/<name>/…`
+  and absolute paths
   (`/Users/…`, `/home/…`, `~/dev/…`) with paths relative to the skill folder:
   `<this skill's folder>/scripts/x.py` in prose, and `Path(__file__)`-relative paths in scripts.
 - **Front matter:** `name` must equal the folder name, and `description` (at most 1024 characters)
@@ -134,7 +136,9 @@ Give the release URL, what changed, and how to get it:
 
 - **Claude Code:** `/plugin marketplace update $M`. For a first install of a new plugin, run
   `/plugin install <plugin>@$M`.
-- **Other agents:** `./install.sh --agent cursor --skill <name> --force` from a clone (or the `curl`
+- **Copilot CLI:** `copilot plugin marketplace update $M` (first install: `copilot plugin install
+  <plugin>@$M`).
+- **Other agents:** `./install.sh --agent cursor|copilot --skill <name> --force` from a clone (or the `curl`
   one-liner in the README). Symlinked installs only need a `git pull`.
 - **The source project:** its copy is unchanged. If you fixed paths or content in the repo copy,
   ask whether to bring those fixes back into the source.

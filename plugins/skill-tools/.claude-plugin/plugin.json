@@ -1,7 +1,7 @@
 {
   "name": "skill-tools",
   "description": "Maintain your own agent skills: publish-skill copies a new or updated skill from any project into your skills repo, checks it is public-safe, and releases it.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "injey",
     "url": "https://github.com/injey"
@@ -9,5 +9,10 @@
   "homepage": "https://github.com/injey/agent-skills",
   "repository": "https://github.com/injey/agent-skills",
   "license": "MIT",
-  "keywords": ["skills", "publishing", "git", "release"]
+  "keywords": [
+    "skills",
+    "publishing",
+    "git",
+    "release"
+  ]
 }
