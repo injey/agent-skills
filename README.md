@@ -18,10 +18,11 @@ Each skill is a self-contained folder that works the same in every agent.
 
 ```text
 /plugin marketplace add injey/agent-skills
-/plugin install doc-tools@agent-skills
+/plugin install doc-tools@injey-agent-skills
 ```
 
-`/plugin marketplace update agent-skills` pulls new versions. Skills then show as
+`/plugin marketplace update injey-agent-skills` pulls new versions. (The marketplace is named
+`injey-agent-skills` because Claude Code reserves `agent-skills` for Anthropic.) Skills then show as
 `doc-tools:markdown-docs` and so on.
 
 ### Any agent: `npx skills`

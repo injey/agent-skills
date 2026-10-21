@@ -41,6 +41,7 @@ Instructions for the agent…
 2. New plugin? Add `plugins/<plugin>/.claude-plugin/plugin.json` and list it in
    `.claude-plugin/marketplace.json` with `"source": "./plugins/<plugin>"`.
 3. Add the skill to the catalogue in `README.md` and a line to `CHANGELOG.md`.
-4. Bump `version` in the plugin's `plugin.json` and in `marketplace.json`.
+4. Bump `version` in the plugin's `plugin.json` and in `marketplace.json`. Keep the marketplace
+   `name` as `injey-agent-skills`: it is what users type after `@`, and changing it breaks installs.
 5. Run `python3 tools/validate.py`, and try it with `./install.sh --dest /tmp/skills-test`.
 6. Release: tag `vX.Y.Z` and create a GitHub release (`gh release create vX.Y.Z --generate-notes`).

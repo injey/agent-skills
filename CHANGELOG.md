@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1 (2026-10-21)
+
+- Marketplace renamed to `injey-agent-skills`: Claude Code reserves `agent-skills` for
+  Anthropic, so `/plugin marketplace add` refused it. Install with `doc-tools@injey-agent-skills`.
+
 ## 0.1.0 (2026-10-21)
 
 - `doc-tools` plugin: `markdown-docs` (Markdown to HTML/PDF documents and slide decks), `story-docs`

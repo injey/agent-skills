@@ -1,12 +1,12 @@
 {
-  "name": "agent-skills",
+  "name": "injey-agent-skills",
   "owner": {
     "name": "injey",
     "url": "https://github.com/injey"
   },
   "metadata": {
     "description": "Agent skills for Claude Code, Cursor and other SKILL.md-compatible agents, grouped into plugins by theme.",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   "plugins": [
     {
