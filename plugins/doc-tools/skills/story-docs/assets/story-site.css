@@ -1,0 +1,14 @@
+/* story-docs: status badges in an epic's Stories table. `story_site.py build` adds this file to every
+   page (markdown-docs --css), so it works with any theme. */
+.status { display: inline-block; white-space: nowrap; padding: 2px 9px; border-radius: 999px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: .04em; line-height: 1.5; border: 1px solid transparent;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.status.not-started { background: #EEEEEE; color: #555555; }
+.status.analysed    { background: #EDE3F5; color: #4E106F; }
+.status.in-progress { background: #DCEBFB; color: #0B4F8A; }
+.status.in-review   { background: #FFF1C2; color: #7A5B00; }
+.status.done        { background: #DDF3E4; color: #11643A; }
+.status.blocked     { background: #FCDDE6; color: #A3123F; }
+.status.on-hold     { background: #FFFFFF; color: #666666; border: 1px dashed #999999; }
+.status-legend { font-size: 13px; color: #555555; }
+.status-legend .status { margin-right: 2px; }

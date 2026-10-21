@@ -1,0 +1,21 @@
+{
+  "name": "agent-skills",
+  "owner": {
+    "name": "injey",
+    "url": "https://github.com/injey"
+  },
+  "metadata": {
+    "description": "Agent skills for Claude Code, Cursor and other SKILL.md-compatible agents, grouped into plugins by theme.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "doc-tools",
+      "source": "./plugins/doc-tools",
+      "description": "Build shareable documents, slide decks and HTML pages from Markdown and CSV: markdown-docs, story-docs, csv-to-html.",
+      "version": "0.1.0",
+      "category": "documentation",
+      "keywords": ["markdown", "pdf", "slides", "html", "csv", "documentation"]
+    }
+  ]
+}
