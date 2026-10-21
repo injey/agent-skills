@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.0 (2026-10-21)
+
+- New `skill-tools` plugin with `publish-skill`: publish a new or updated skill from any project to
+  your skills repo, with portability and content checks, version bumps, validation and a release.
+
 ## 0.1.1 (2026-10-21)
 
 - Marketplace renamed to `injey-agent-skills`: Claude Code reserves `agent-skills` for

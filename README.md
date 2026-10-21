@@ -11,6 +11,7 @@ Each skill is a self-contained folder that works the same in every agent.
 | `doc-tools` | [`markdown-docs`](plugins/doc-tools/skills/markdown-docs/SKILL.md) | Markdown → styled HTML + PDF documents (cover, contents, page numbers, callouts, Mermaid), and `*.slides.md` → 16:9 HTML decks + PDF. Themeable per project. |
 | `doc-tools` | [`story-docs`](plugins/doc-tools/skills/story-docs/SKILL.md) | A linked static site of epic and story notes (main page → epic → story and back), rendered to HTML. Needs `markdown-docs`. |
 | `doc-tools` | [`csv-to-html`](plugins/doc-tools/skills/csv-to-html/SKILL.md) | Any CSV → one offline, interactive HTML table (sort, filter, search, export). |
+| `skill-tools` | [`publish-skill`](plugins/skill-tools/skills/publish-skill/SKILL.md) | Publishes a new or updated skill from any project to your skills repo: makes it portable, scans for secrets and employer or customer names, bumps versions, validates, pushes and releases. Settings live in a private `~/.config/publish-skill/config`. Fork this repo to use it with your own. |
 
 ## Install
 
@@ -19,6 +20,7 @@ Each skill is a self-contained folder that works the same in every agent.
 ```text
 /plugin marketplace add injey/agent-skills
 /plugin install doc-tools@injey-agent-skills
+/plugin install skill-tools@injey-agent-skills
 ```
 
 `/plugin marketplace update injey-agent-skills` pulls new versions. (The marketplace is named
