@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.1 (2026-10-27)
+
+- `markdown-docs` (doc-tools 0.1.2): works on Windows. pandoc and Mermaid text is read and written
+  as UTF-8, so accents, dashes, curly quotes and emoji no longer break builds; more Chrome and Edge
+  install paths are found (32-bit Chrome, per-user Chrome in `%LOCALAPPDATA%`, 64-bit Edge);
+  `doctor` checks `pdftoppm` off macOS; SKILL.md covers PowerShell and poppler page previews.
+
 ## 0.3.0 (2026-10-21)
 
 - GitHub Copilot support: `install.sh --agent copilot` installs to `~/.copilot/skills` (user) or

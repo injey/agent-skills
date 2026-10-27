@@ -22,6 +22,9 @@ python3 $MD docs/ --recursive --changed -o out/      # folders: only what change
 python3 $MD new docs/q4-review --title "Q4 Review"   # starter deck + document from the active style
 ```
 
+On Windows run the same commands in PowerShell with `python` (or `py`) instead of `python3`, and
+`$MD = "<this skill's folder>\scripts\md2pdf.py"`.
+
 `--format pdf|html|both` overrides the defaults. A project can also set them in config:
 `"outputs": {"document": "both", "deck": "both"}`. Folder builds skip `README.md` and any folder
 starting with `_` or `.`, such as templates and caches.
@@ -40,7 +43,8 @@ starting with `_` or `.`, such as templates and caches.
 4. **Check visually before handing over.**
    - **Decks:** use `--shots 1,5,9` (or `all`). The PNGs go to `~/.cache/md2pdf/shots/`.
    - **Documents:** on macOS run `swift $(dirname $MD)/pdf_pages.swift file.pdf <scratch-dir> 1,3`.
-     On Linux use `pdftoppm -png -r 80`.
+     On Linux or Windows use `pdftoppm -png -r 80 file.pdf <scratch-dir>/p` (poppler; on Windows
+     `choco install poppler` or `scoop install poppler`).
 
    Then read the images and check:
    - text overflowing or colliding with the footer;
@@ -192,6 +196,7 @@ This creates `.md2pdf/` with `config.json`, a commented `theme.css`, and the log
 - **Requirements:**
   - `pandoc` 3.x;
   - Google Chrome, Chromium or Edge (or `CHROME_PATH`);
+  - for document page previews, optional: `swift` on macOS, or `pdftoppm` (poppler) on Linux and Windows;
   - `mmdc` (`npm i -g @mermaid-js/mermaid-cli`), only for Mermaid;
   - Python 3.9+ standard library.
 - **Diagrams use Arial**, so text measured when the diagram is drawn matches what viewers see.

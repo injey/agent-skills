@@ -57,7 +57,10 @@ CHROME_CANDIDATES = [
     "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
     "google-chrome", "google-chrome-stable", "chromium", "chromium-browser", "chrome", "msedge",
     r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+    r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+    r"%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe",
     r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+    r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
 ]
 H1_RE = re.compile(r"^#\s+(.+?)\s*#*\s*$", re.M)
 STATUS_RE = re.compile(r"^Status:\s*\*\*(.+?)\*\*", re.M)
@@ -328,15 +331,16 @@ def render_mermaid(code: str, svg_id: str, config: dict) -> str:
     out = CACHE_DIR / f"{key}.svg"
     if not out.exists():
         src, cfg = CACHE_DIR / f"{key}.mmd", CACHE_DIR / f"{key}.json"
-        src.write_text(code)
-        cfg.write_text(cfg_text)
+        src.write_text(code, encoding="utf-8")
+        cfg.write_text(cfg_text, encoding="utf-8")
         proc = subprocess.run([need("mmdc"), "-i", str(src), "-o", str(out), "-c", str(cfg),
-                               "-b", "transparent", "-I", svg_id, "-q"], capture_output=True, text=True)
+                               "-b", "transparent", "-I", svg_id, "-q"], capture_output=True, text=True,
+                              encoding="utf-8", errors="replace")
         src.unlink(missing_ok=True)
         cfg.unlink(missing_ok=True)
         if proc.returncode != 0 or not out.exists():
             die(f"Mermaid render failed ({svg_id}):\n{proc.stderr or proc.stdout}\n---\n{code}")
-    return re.sub(r"^<\?xml[^>]*>\s*", "", out.read_text())
+    return re.sub(r"^<\?xml[^>]*>\s*", "", out.read_text(encoding="utf-8"))
 
 
 def replace_mermaid(md: str, prefix: str, config: dict) -> str:
@@ -447,7 +451,8 @@ def render_html(src: Path, style: Style, out_html: Path, extra_css: list[Path], 
     if truthy(numbered):
         args.append("--number-sections")
     try:
-        proc = subprocess.run(args, input=body, capture_output=True, text=True, cwd=str(src.parent))
+        proc = subprocess.run(args, input=body, capture_output=True, text=True, encoding="utf-8",
+                              cwd=str(src.parent))
     finally:
         head_path.unlink(missing_ok=True)
     if proc.returncode != 0:
@@ -507,7 +512,8 @@ def render_deck(src: Path, style: Style, out_html: Path, extra_css: list[Path]) 
     chunks, classes = split_slides(body)
     proc = subprocess.run(
         [need("pandoc"), "-f", MD_FORMAT, "-t", "html5", "--columns=1000"],
-        input=f"\n\n{SLIDE_BREAK}\n\n".join(chunks), capture_output=True, text=True, cwd=str(src.parent))
+        input=f"\n\n{SLIDE_BREAK}\n\n".join(chunks), capture_output=True, text=True,
+        encoding="utf-8", cwd=str(src.parent))
     if proc.returncode != 0:
         die(f"pandoc failed for {src}:\n{proc.stderr}")
     rendered = proc.stdout.split(SLIDE_BREAK)
@@ -540,7 +546,7 @@ def find_chrome() -> str | None:
     env = os.environ.get("CHROME_PATH")
     if env and Path(env).exists():
         return env
-    for c in CHROME_CANDIDATES:
+    for c in map(os.path.expandvars, CHROME_CANDIDATES):
         if Path(c).exists():
             return c
         found = shutil.which(c)
@@ -806,8 +812,9 @@ def cmd_doctor(_: list[str]) -> int:
         ok &= bool(path) or tool == "mmdc"
     chrome = find_chrome()
     print(f"{'ok ' if chrome else '-- '} chrome   {chrome or 'not found (set CHROME_PATH)'}  (required for PDF)")
-    swift = shutil.which("swift")
-    print(f"{'ok ' if swift else '-- '} swift    {swift or 'not found'}  (optional: page previews on macOS)")
+    viewer = "swift" if sys.platform == "darwin" else "pdftoppm"
+    found = shutil.which(viewer)
+    print(f"{'ok ' if found else '-- '} {viewer:<8} {found or 'not found'}  (optional: document page previews)")
     print(f"themes: {', '.join(list_themes())}   cache: {CACHE_DIR}")
     return 0 if ok and chrome else 1
 
